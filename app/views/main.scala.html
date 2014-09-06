@@ -1,0 +1,29 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <link href="@routes.Assets.versioned("lib/bootstrap-datepicker/css/datepicker3.css")" media="all" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.versioned("lib/font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+        <link href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.min.css")" media="all" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.versioned("stylesheets/xcharts.css")" media="all" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.versioned("stylesheets/flags.css")" media="all" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.versioned("stylesheets/bootstrap-datetimepicker.min.css")" media="all" rel="stylesheet" type="text/css" />
+
+        <script src="@routes.Assets.versioned("lib/jquery/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("lib/bootstrap/js/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.versioned("lib/bootstrap-datepicker/js/bootstrap-datepicker.js")"></script>
+        <script src="@routes.Assets.versioned("lib/d3js/d3.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/bootstrap-datetimepicker.min.js")" ></script>
+
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/jquery.easypiechart.min.js")" ></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/xcharts.min.js")" ></script>
+
+
+    </head>
+        @content
+</html>

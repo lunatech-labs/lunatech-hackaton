@@ -1,0 +1,98 @@
+@(userData: Form[UserData], createAccountForm: Form[User])
+
+@main("Welcome to Green up my truck!") {
+
+<body class="intro">
+  <h1 class="title">Welcome to <span class="name">Green up my truck!</span></h1>
+
+  <form action="@routes.Application.authenticate()" method="POST" class="signin" role="form">
+    <div class="title">Sign In</div>
+    <div class="form-group">
+      <input required="true" name="email" type="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <input required="true" name="password" type="password" class="form-control" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Sign in</button>
+    <div class="or">OR</div>
+    <div class="title">Register</div>
+    <a href=""  class="btn btn-default" data-toggle="modal" data-target="#myModal">Create an account</a>
+  </form>
+
+  <div class="modal fade " id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="form-horizontal" action="@routes.Application.createAccount()" method="POST">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Create an account</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <div style="font-size: 90pt"><i class="fa fa-truck"></i> </div>
+                  <h5 style="font-size: 14pt"><input name="isTransporter" value="true" type="checkbox" name="checkboxG4" id="checkboxG4" class="css-checkbox"><label for="checkboxG4" class="css-label">I am a transporter</label></h5>
+                </div>
+                <div class="col-md-6 text-center" >
+                  <div style="font-size: 90pt"> <i class="fa fa-codepen"></i> </div>
+                  <h5 style="font-size: 14pt"><input name="isShipper" value="true" type="checkbox" name="checkboxG5" id="checkboxG5" class="css-checkbox"><label for="checkboxG5" class="css-label">I am shipping goods</label></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="reference" class="col-sm-2 control-label">Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="name" required="true" class="form-control" id="reference" placeholder="Company name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" name="email" required="true" class="form-control" id="email" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-sm-2 control-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password"  name="password" required="true" class="form-control" id="password" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="yourcontent" class="col-sm-2 control-label">Description</label>
+                      <div class="col-sm-10">
+                        <textarea id="yourcontent" name="description" required="true" class="form-control" style="text-align:left;height: 100px;" placeholder="Company description"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="address" class="col-sm-2 control-label">Address</label>
+                      <div class="col-sm-10">
+                        <textarea id="address" name="address" required="true" class="form-control" style="text-align:left;height: 100px;" placeholder="Your address"></textarea>
+                      </div>
+                    </div>
+
+
+
+                </div>
+
+              </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+    </div>
+
+</body>
+}

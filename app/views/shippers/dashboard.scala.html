@@ -1,0 +1,262 @@
+@(user: User)(implicit flash: play.api.mvc.Flash)
+
+@main("Shipper dashboard") {
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <nav>
+        <ul class="nav nav-tabs pull-left">
+          <li><h1><i class="fa fa-codepen"></i> </li>
+          </ul>
+          <ul class="nav nav-tabs pull-right">
+
+            <li class="signedin">Signed in as @user.email (@user.name)</li>
+            <li class="logout"><a href="@routes.Application.logout()">Sign out</a></li>
+
+          </ul>
+        </nav>
+      </header>
+
+      <div id="Wrapper">
+        <div id="Container">
+          <div class="left">
+            <div class="col">
+              <div class="chat-wrapper">
+                <br>
+                <h2><i class="fa fa-desktop"></i> Dashboard <span style="font-size: 10pt; color: #3AC;">- You are a shipper</span></h2>
+                @flash.get("success").map { message =>
+                  <div class="alert alert-success">
+                    @message
+                  </div>
+                }
+
+
+                <div class="quick-pie panel panel-default">
+                  <div class="panel-body">
+                    <h3>Your <span style="color:#A8BC7B">green&sup2;</span> points</h3>
+                    <!-- <div class="row">
+                      <div class="col-md-12 text-center">
+
+                        <figure style="width: 100%; height: 300px;" id="chart"></figure>
+                      </div>
+                    </div> -->
+                    <div class="row">
+                      <div class="col-md-4 text-center">
+                        <div id="dash_pie_3" class="piechart" data-percent="100">
+                          <span class="percent">150</span>
+                          <canvas height="220" width="220" style="height: 110px; width: 110px;"></canvas></div>
+                          <a href="#" class="title"><i class="fa fa-angle-right"></i> Total <i class="fa fa-angle-left"></i></a>
+                        </div>
+                        <div class="col-md-4 text-center">
+                          <div id="dash_pie_1" class="piechart" data-percent="100">
+                            <span class="percent">100</span>
+                            <canvas height="220" width="220" style="height: 110px; width: 110px;"></canvas></div>
+                            <a href="#" class="title"><i class="fa fa-angle-right"></i> This month <i class="fa fa-angle-left"></i></a>
+                          </div>
+                          <div class="col-md-4 text-center">
+                            <div id="dash_pie_2" class="piechart" data-percent="100">
+                              <span class="percent">50</span>
+                              <canvas height="220" width="220" style="height: 110px; width: 110px;"></canvas></div>
+                              <a href="#" class="title"><i class="fa fa-angle-right"></i> Last month <i class="fa fa-angle-left"></i></a>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                      <div class="quick-pie panel panel-default">
+
+                        <div class="panel-body">
+                          <h3>Your awaiting shipments</h3>
+                          <div class="row">
+                            <button type="button" class="btn btn-primary btn-bg pull-right" style="margin-right: 40px;" data-toggle="modal" data-target="#myModal">Add a new shipment</button>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 text-left">
+                              <div id="googleview">
+
+                                <div class="shipment" style="margin-bottom: 80px">
+                                  <h4><i class="fa fa-lock"></i>  Reference <a href="">12031221</a> <span style="font-size: 10pt" class="label label-info"><a style="color:#eee" href="">Truck UPS</a> coming tomorrow</a></span> </h4>
+                                  <div> <img src="blank.gif" class="flag flag-nl" alt="" /> NL<a target="_blank" href="http://maps.google.com/maps?q=Delft"> CompanyX, 12, havondstraat, 3022DI - Delft</a> →
+                                  <a target="_blank" href="http://maps.google.com/maps?q=Europoort rotterdam">Rotterdam Europoort, 3022 DD Rotterdam</a> <img src="blank.gif" class="flag flag-nl" alt="" /> NL</div>
+                                  <div style="margin-bottom: 10px;"  class="url">Palet 12 pieces • 12m&sup3; • 10Kg   </div>
+
+                                </div>
+                                <div class="shipment" style="margin-bottom: 80px">
+                                  <h4>Reference <a href="">12031223</a> <span style="font-size: 10pt" class="label label-warning">Deadline is in 2 days</span> </h4>
+                                  <div> <img src="blank.gif" class="flag flag-nl" alt="" /> NL<a target="_blank" href="http://maps.google.com/maps?q=Delft"> CompanyX, 12, havondstraat, 3022DI - Delft</a> →
+                                    <a target="_blank" href="http://maps.google.com/maps?q=Europoort Rotterdam">Rotterdam Europoort, 3022 DD Rotterdam</a> <img src="blank.gif" class="flag flag-nl" alt="" /> NL</div>
+                                    <div style="margin-bottom: 10px;" class="url">Palet 4 pieces • 2m&sup3; • 1Kg <span style="padding-left:20px; font-size: 8pt" ><a href=""><i class="fa fa-pencil-square-o"></i> modify it</a> - <a href=""><i class="fa fa-trash-o"></i> delete it</a></span></div>
+                                </div>
+
+
+
+                                <div class="shipment" style="margin-bottom: 80px">
+                                  <h4>Reference <a href="">12031241</a> <span style="font-size: 10pt" class="label label-success">Deadline is in 1 week</span></h4>
+                                  <div> <img src="blank.gif" class="flag flag-nl" alt="" /> NL<a target="_blank" href="http://maps.google.com/maps?q=Delft"> CompanyX, 12, havondstraat, 3022DI - Delft</a> →
+                                    <a target="_blank" href="http://maps.google.com/maps?q=Europoort Rotterdam">Rotterdam Europoort, 3022 DD Rotterdam</a> <img src="blank.gif" class="flag flag-nl" alt="" /> NL</div>
+                                    <div style="margin-bottom: 10px;"  class="url">Palet 2 pieces • 42m&sup3; • 30Kg <span style="padding-left:20px; font-size: 8pt" ><a href=""><i class="fa fa-pencil-square-o"></i> modify it</a> - <a href=""><i class="fa fa-trash-o"></i> delete it</a></span></div>
+
+                                </div>
+
+
+                                </div>
+
+                              </div>
+                            </div>
+
+                            <div class="modal fade " id="myModal">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">Add a new shipment</h4>
+                                  </div>
+                                  <div class="modal-body">
+
+                                    <form class="form-horizontal" role="form">
+                                      <div class="form-group">
+                                        <label for="reference" class="col-sm-2 control-label">Reference</label>
+                                        <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="reference" placeholder="Reference">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="yourcontent" class="col-sm-2 control-label">Content</label>
+                                        <div class="col-sm-10">
+                                          <textarea id="yourcontent" class="form-control" style="text-align:left;height: 100px;" placeholder="Your content"></textarea>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Delivery address</label>
+                                        <div class="col-sm-10">
+                                          <textarea id="address" class="form-control" style="text-align:left;height: 100px;" placeholder="The final delivery address"></textarea>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="map" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                          <iframe style="border: 1px solid #aaa; width:460px;height:150px" id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19651.223639727763!2d4.363697750000002!3d51.99953489999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b5c3515f58fd%3A0x89b05ca3c54bd43d!2sDelft!5e0!3m2!1sen!2snl!4v1409932423728" frameborder="0" style="border:0"></iframe>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="size" class="col-sm-2 control-label">Size <span style="font-size: 8pt; color: #aaa;font-style: italic;">(m&sup3;)</span></label>
+                                        <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="size" placeholder="Size">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="weight" class="col-sm-2 control-label">Weight <span style="font-size: 8pt; color: #aaa;font-style: italic;">(kg)</span></label>
+                                        <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="weight" placeholder="Weight">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="date" class="col-sm-2 control-label">Deadline <span style="font-size: 8pt; color: #aaa;font-style: italic;">(dd/mm/yyyy)</span></label>
+                                        <div class="col-sm-10">
+                                          <input type="text" class="form-control" id="date" data-provide="datepicker">
+                                        </div>
+                                      </div>
+                                      <script>
+                                        $('#date').datepicker()
+                                      </script>
+
+                                    </form>
+
+
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+
+
+                            <script type="text/javascript">
+                              $(function() {
+                                $('#dash_pie_1').easyPieChart({
+                                  //your configuration goes here
+                                  lineWidth:6,
+                                  barColor:"#A8BC7B"
+                                });
+
+                                $('#dash_pie_2').easyPieChart({
+                                  //your configuration goes here
+                                  lineWidth:6,
+                                  barColor:"#A8BC7B"
+                                });
+
+                                $('#dash_pie_3').easyPieChart({
+                                  //your configuration goes here
+                                  lineWidth:6,
+                                  barColor:"#A8BC7B"
+                                });
+
+                                var data = {
+                                  "xScale": "ordinal",
+                                  "yScale": "linear",
+                                  "type": "bar",
+                                  "main": [
+                                    {
+                                      "data": [
+                                        {
+                                          "x": "This month",
+                                          "y": 6
+                                        },
+                                        {
+                                          "x": "Last month",
+                                          "y": 9
+                                        },
+                                        {
+                                          "x": "March",
+                                          "y": 1
+                                        },
+                                        {
+                                          "x": "April",
+                                          "y": 6
+                                        },
+                                        {
+                                          "x": "May",
+                                          "y": 13
+                                        },
+                                        {
+                                          "x": "June",
+                                          "y": 3
+                                        },
+                                        {
+                                          "x": "July",
+                                          "y": 4
+                                        },
+                                        {
+                                          "x": "Last month",
+                                          "y": 9
+                                        },
+                                        {
+                                          "x": "This month",
+                                          "y": 6
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                };
+
+                                //var myChart = new xChart('bar', data, '#chart', {});
+
+                              });
+
+                            </script>
+
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </body>
+          }
